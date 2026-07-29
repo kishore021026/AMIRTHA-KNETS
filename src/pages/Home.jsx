@@ -20,7 +20,7 @@ const MAJOR_CLIENTS = [
     bgImage: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1000&auto=format&fit=crop'
   },
   {
-    name: 'HONDA',
+    name: 'HYUNDAI',
     category: 'Technical & Industrial Textiles',
     description: 'Providing heavy-duty, high-tensile specialized technical fabrics for manufacturing standards.',
     bgImage: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop'
