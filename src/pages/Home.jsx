@@ -63,7 +63,7 @@ const MANUFACTURING_STEPS = [
 
 export default function Home() {
   const theme = useTheme()
-  const activeComponent = 'ParticleThreads' 
+  const activeComponent = 'FabricCanvas' 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {
