@@ -27,7 +27,7 @@ export default function Navbar() {
       <div className="flex gap-6 md:gap-10 text-[11px] md:text-xs font-bold tracking-widest uppercase">
         <Link to="/" style={{ color: '#FFFFFF' }} className="hover:underline">Home</Link>
         <Link to="/products" style={{ color: '#FFFFFF' }} className="hover:underline">Catalog</Link>
-        <Link to="/concierge" style={{ color: '#FFFFFF' }} className="hover:underline">Concierge</Link>
+        <Link to="/concierge" style={{ color: '#FFFFFF' }} className="hover:underline">Contact-Us</Link>
       </div>
     </nav>
   )
