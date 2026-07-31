@@ -5,7 +5,7 @@ import { useTheme } from '../context/ThemeContext'
 export default function Concierge() {
   const theme = useTheme()
 
-  // State to capture all input fields from the B2B client form
+  // B2B Form State
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -15,20 +15,29 @@ export default function Concierge() {
     requestSampleKit: false,
     message: ''
   })
-
-  // State to manage submission success view and loading state
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  // Career Form State (Using LinkedIn URL instead of file upload)
+  const [careerData, setCareerData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    positionType: 'Full-Time',
+    department: 'Textile Engineering',
+    linkedin: '',
+    coverLetter: ''
+  })
+  const [careerSubmitted, setCareerSubmitted] = useState(false)
+  const [careerLoading, setCareerLoading] = useState(false)
+
   // ==========================================
-  // FORM SUBMISSION HANDLER (WEB3FORMS API)
+  // B2B FORM SUBMISSION (WEB3FORMS)
   // ==========================================
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
 
-    // ⚙️ CONFIGURATION: 
-    // You can update your Web3Forms Access Key here whenever needed.
     const WEB3FORMS_ACCESS_KEY = "1b1583ff-7fbe-4e22-83b9-821f00b3a8c0"
 
     const payload = {
@@ -44,7 +53,6 @@ export default function Concierge() {
     }
 
     try {
-      // Sending data securely to Web3Forms endpoint
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -56,7 +64,7 @@ export default function Concierge() {
 
       const result = await response.json()
       if (result.success) {
-        setSubmitted(true) // Triggers the success confirmation card
+        setSubmitted(true)
       } else {
         alert("Something went wrong. Please try again.")
       }
@@ -65,6 +73,51 @@ export default function Concierge() {
       alert("Network error. Please check your connection.")
     } finally {
       setLoading(false)
+    }
+  }
+
+  // ==========================================
+  // CAREER FORM SUBMISSION (WEB3FORMS)
+  // ==========================================
+  const handleCareerSubmit = async (e) => {
+    e.preventDefault()
+    setCareerLoading(true)
+
+    const WEB3FORMS_ACCESS_KEY = "59c4e113-d6db-4fb1-a99e-8882ff0ddad1"
+
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `New Career Application: ${careerData.positionType} - ${careerData.fullName}`,
+      name: careerData.fullName,
+      email: careerData.email,
+      phone: careerData.phone,
+      position_type: careerData.positionType,
+      department: careerData.department,
+      linkedin_profile: careerData.linkedin,
+      message: careerData.coverLetter
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify(payload)
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setCareerSubmitted(true)
+      } else {
+        alert("Something went wrong with your application. Please try again.")
+      }
+    } catch (error) {
+      console.error("Career submission error:", error)
+      alert("Network error. Please check your connection.")
+    } finally {
+      setCareerLoading(false)
     }
   }
 
@@ -198,7 +251,6 @@ export default function Concierge() {
             Fill out the details below and our technical sales team will respond within 24 business hours.
           </p>
 
-          {/* Conditional Rendering: Show success state or input form */}
           {submitted ? (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
@@ -323,10 +375,12 @@ export default function Concierge() {
 
       </div>
 
-      {/* BOTTOM SECTION: Interactive Google Map Embedding (Coimbatore Location) */}
+      {/* ========================================== */}
+      {/* SECTION 1.5: INTERACTIVE GOOGLE MAP */}
+      {/* ========================================== */}
       <div 
         style={{ borderColor: theme.border }}
-        className="max-w-7xl mx-auto w-full rounded-2xl overflow-hidden border shadow-xl mb-12"
+        className="max-w-7xl mx-auto w-full rounded-2xl overflow-hidden border shadow-xl mb-20"
       >
         <div className="p-6 bg-stone-900 text-white flex justify-between items-center">
           <h3 className="text-sm font-bold tracking-widest uppercase">Global Mill Location • Coimbatore, Tamil Nadu</h3>
@@ -343,6 +397,167 @@ export default function Concierge() {
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
+        </div>
+      </div>
+
+      {/* ========================================== */}
+      {/* SECTION 2: CAREER & INTERNSHIP OPPORTUNITIES */}
+      {/* ========================================== */}
+      <div className="max-w-7xl mx-auto w-full mb-12">
+        
+        {/* Visual Section Divider & Badge */}
+        <div className="flex items-center gap-4 mb-8">
+          <div className="h-[1px] flex-grow opacity-20" style={{ backgroundColor: theme.text }}></div>
+          <span 
+            style={{ color: theme.text }}
+            className="text-xs font-bold tracking-[0.3em] uppercase opacity-70 px-4 py-1.5 rounded-full border border-current"
+          >
+            HIRING • Human Resources & Talent
+          </span>
+          <div className="h-[1px] flex-grow opacity-20" style={{ backgroundColor: theme.text }}></div>
+        </div>
+
+        <div 
+          style={{ 
+            borderColor: theme.border,
+            backgroundColor: theme.id === 'midnight' ? 'rgba(26, 43, 76, 0.4)' : theme.id === 'terracotta' ? 'rgba(156, 82, 55, 0.05)' : 'rgba(255, 255, 255, 0.6)'
+          }}
+          className="p-8 sm:p-12 rounded-2xl border backdrop-blur-sm shadow-2xl relative"
+        >
+          <div className="max-w-3xl mb-10">
+            <span style={{ color: theme.text }} className="text-xs font-bold tracking-[0.25em] uppercase opacity-60 block mb-2">
+              Join Our Workforce
+            </span>
+            <h2 style={{ color: theme.text }} className="text-3xl sm:text-4xl font-serif font-bold mb-3">
+              Career & Internship Opportunities
+            </h2>
+            <p style={{ color: theme.text }} className="text-sm sm:text-base font-light opacity-80 leading-relaxed">
+              Are you a college student looking for hands-on industrial training or a graduate ready to build world-class technical textiles? Submit your details below.
+            </p>
+          </div>
+
+          {careerSubmitted ? (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="py-16 text-center"
+            >
+              <div className="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
+              <h4 style={{ color: theme.text }} className="text-2xl font-serif font-bold mb-2">Application Submitted Successfully</h4>
+              <p style={{ color: theme.text }} className="text-sm opacity-80">Thank you, {careerData.fullName}. Our HR and plant operations team in Coimbatore will review your profile and get in touch.</p>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleCareerSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Full Name *</label>
+                  <input 
+                    type="text" 
+                    required
+                    value={careerData.fullName}
+                    onChange={(e) => setCareerData({...careerData, fullName: e.target.value})}
+                    placeholder="Your full name"
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Email Address *</label>
+                  <input 
+                    type="email" 
+                    required
+                    value={careerData.email}
+                    onChange={(e) => setCareerData({...careerData, email: e.target.value})}
+                    placeholder="name@email.com"
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Phone Number *</label>
+                  <input 
+                    type="tel" 
+                    required
+                    value={careerData.phone}
+                    onChange={(e) => setCareerData({...careerData, phone: e.target.value})}
+                    placeholder="+91 XXXXX XXXXX"
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Position Type</label>
+                  <select 
+                    value={careerData.positionType}
+                    onChange={(e) => setCareerData({...careerData, positionType: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  >
+                    <option value="Full-Time" className="bg-stone-900 text-white">Full-Time Employment</option>
+                    <option value="Internship" className="bg-stone-900 text-white">Student Internship</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Department / Field</label>
+                  <select 
+                    value={careerData.department}
+                    onChange={(e) => setCareerData({...careerData, department: e.target.value})}
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  >
+                    <option value="Textile Engineering" className="bg-stone-900 text-white">Textile Engineering & Weaving</option>
+                    <option value="Plant Operations" className="bg-stone-900 text-white">Plant Operations & Quality Control</option>
+                    <option value="Business Development" className="bg-stone-900 text-white">B2B Sales & Business Development</option>
+                    <option value="Supply Chain & Logistics" className="bg-stone-900 text-white">Supply Chain & Logistics</option>
+                    <option value="IT & Web Operations" className="bg-stone-900 text-white">IT & Digital Operations</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">LinkedIn Profile URL </label>
+                  <input 
+                    type="url" 
+                    // required
+                    value={careerData.linkedin}
+                    onChange={(e) => setCareerData({...careerData, linkedin: e.target.value})}
+                    placeholder="https://linkedin.com/in/username"
+                    className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all"
+                    style={{ borderColor: theme.border, color: theme.text }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Cover Note / Introduction</label>
+                <textarea 
+                  rows="3"
+                  value={careerData.coverLetter}
+                  onChange={(e) => setCareerData({...careerData, coverLetter: e.target.value})}
+                  placeholder="Tell us about your educational background, graduation year, technical skills, or why you want to intern/work at Amirtha Knets..."
+                  className="w-full px-4 py-3 rounded-xl border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 transition-all resize-none"
+                  style={{ borderColor: theme.border, color: theme.text }}
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit"
+                disabled={careerLoading}
+                style={{ 
+                  backgroundColor: theme.id === 'midnight' ? '#1A2B4C' : theme.id === 'terracotta' ? '#9C5237' : '#111111',
+                  color: '#FFFFFF' 
+                }}
+                className="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all shadow-lg hover:opacity-90 disabled:opacity-50"
+              >
+                {careerLoading ? 'Submitting Application...' : 'Submit Career Application'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
 
