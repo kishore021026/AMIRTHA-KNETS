@@ -6,7 +6,9 @@ import Home from './pages/Home'
 import Concierge from './pages/Concierge'
 
 export default function App() {
-  const activeTheme = THEMES['terracotta'] // or onyx / midnight
+  
+  // 🎨 CHANGE YOUR GLOBAL THEME HERE: 'onyx', 'terracotta', or 'midnight'
+  const activeTheme = THEMES['terracotta']
 
   return (
     <ThemeProvider theme={activeTheme}>
@@ -20,7 +22,7 @@ export default function App() {
           
           <div className="flex-grow flex flex-col relative">
             <Routes>
-              <Route path="/" element={() => <Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/concierge" element={<Concierge />} />
             </Routes>
           </div>
