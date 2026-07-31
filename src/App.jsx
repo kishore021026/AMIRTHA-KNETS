@@ -3,11 +3,10 @@ import { ThemeProvider, THEMES } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import Concierge from './pages/Concierge'
 
 export default function App() {
-  
-  // 🎨 CHANGE YOUR GLOBAL THEME HERE: 'onyx', 'terracotta', or 'midnight'
-  const activeTheme = THEMES['terracotta']
+  const activeTheme = THEMES['terracotta'] // or onyx / midnight
 
   return (
     <ThemeProvider theme={activeTheme}>
@@ -21,7 +20,8 @@ export default function App() {
           
           <div className="flex-grow flex flex-col relative">
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={() => <Home />} />
+              <Route path="/concierge" element={<Concierge />} />
             </Routes>
           </div>
 
