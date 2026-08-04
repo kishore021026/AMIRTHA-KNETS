@@ -1,19 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 
 export default function Concierge() {
   const theme = useTheme()
+  const location = useLocation()
 
-  // Ref to target the B2B form's Name input for auto-focusing
+  // Ref to target the B2B form's Name input for conditional auto-focusing
   const nameInputRef = useRef(null)
 
-  // Automatically focus the B2B Name input when landing on the page
   useEffect(() => {
-    if (nameInputRef.current) {
+    if (location.state?.focusName && nameInputRef.current) {
       nameInputRef.current.focus()
     }
-  }, [])
+  }, [location])
 
   // B2B Form State
   const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ export default function Concierge() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // Career Form State (Using LinkedIn URL instead of file upload)
+  // Career Form State
   const [careerData, setCareerData] = useState({
     fullName: '',
     email: '',
@@ -161,7 +162,6 @@ export default function Concierge() {
         {/* LEFT COLUMN: Contact Info, Storefronts & Hours */}
         <div className="lg:col-span-5 flex flex-col gap-8">
           
-          {/* Office & Contact Box */}
           <div 
             style={{ 
               borderColor: theme.border,
@@ -196,7 +196,6 @@ export default function Concierge() {
             </div>
           </div>
 
-          {/* Retail Storefronts Box */}
           <div 
             style={{ 
               borderColor: theme.border,
@@ -386,9 +385,7 @@ export default function Concierge() {
 
       </div>
 
-      {/* ========================================== */}
-      {/* SECTION 1.5: INTERACTIVE GOOGLE MAP */}
-      {/* ========================================== */}
+      {/* MAP SECTION */}
       <div 
         style={{ borderColor: theme.border }}
         className="max-w-7xl mx-auto w-full rounded-2xl overflow-hidden border shadow-xl mb-20"
@@ -411,12 +408,8 @@ export default function Concierge() {
         </div>
       </div>
 
-      {/* ========================================== */}
-      {/* SECTION 2: CAREER & INTERNSHIP OPPORTUNITIES */}
-      {/* ========================================== */}
+      {/* CAREERS SECTION */}
       <div className="max-w-7xl mx-auto w-full mb-12">
-        
-        {/* Visual Section Divider & Badge */}
         <div className="flex items-center gap-4 mb-8">
           <div className="h-[1px] flex-grow opacity-20" style={{ backgroundColor: theme.text }}></div>
           <span 
@@ -531,7 +524,7 @@ export default function Concierge() {
                 </div>
 
                 <div>
-                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">LinkedIn Profile URL </label>
+                  <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">LinkedIn Profile URL</label>
                   <input 
                     type="url" 
                     value={careerData.linkedin}

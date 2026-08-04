@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 
-// Animated Intertwining Threads Divider Component (No Needles)
+// Animated Intertwining Threads Divider Component
 function KnittingThreadsDivider() {
   const theme = useTheme()
 
   return (
     <div className="w-full max-w-sm mx-auto my-6 flex items-center justify-center overflow-hidden">
       <svg width="280" height="36" viewBox="0 0 280 36" fill="none" xmlns="http://www.w3.org/2000/svg" className="overflow-visible opacity-85">
-        {/* Thread Strand 1 */}
         <motion.path
           d="M 10 18 C 50 2, 90 34, 140 18 C 190 2, 230 34, 270 18"
           stroke={theme.text}
@@ -21,7 +20,6 @@ function KnittingThreadsDivider() {
           animate={{ pathLength: 1, opacity: 0.9 }}
           transition={{ duration: 2.5, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
         />
-        {/* Thread Strand 2 (Intertwining) */}
         <motion.path
           d="M 10 18 C 50 34, 90 2, 140 18 C 190 34, 230 2, 270 18"
           stroke={theme.text}
@@ -37,11 +35,49 @@ function KnittingThreadsDivider() {
   )
 }
 
+// Visual Fabric Weave Swatch Component
+function FabricSwatch({ category, code }) {
+  const theme = useTheme()
+
+  return (
+    <div 
+      className="w-12 h-12 rounded-xl border flex items-center justify-center relative overflow-hidden shadow-inner flex-shrink-0"
+      style={{ borderColor: theme.border, backgroundColor: 'rgba(255, 255, 255, 0.05)' }}
+    >
+      {category === 'Cotton' && (
+        <svg width="100%" height="100%" viewBox="0 0 40 40" className="opacity-70">
+          <path d="M-10 10 Q 10 0, 30 10 T 70 10 M-10 20 Q 10 10, 30 20 T 70 20 M-10 30 Q 10 20, 30 30 T 70 30" stroke={theme.text} strokeWidth="1.5" fill="none" />
+        </svg>
+      )}
+      {category === 'Polyester' && (
+        <svg width="100%" height="100%" viewBox="0 0 40 40" className="opacity-70">
+          <pattern id={`mesh-${code}`} width="6" height="6" patternUnits="userSpaceOnUse">
+            <circle cx="3" cy="3" r="1.2" fill={theme.text} />
+          </pattern>
+          <rect width="40" height="40" fill={`url(#mesh-${code})`} />
+        </svg>
+      )}
+      {category === 'Woolen' && (
+        <svg width="100%" height="100%" viewBox="0 0 40 40" className="opacity-70">
+          <line x1="10" y1="0" x2="10" y2="40" stroke={theme.text} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="20" y1="0" x2="20" y2="40" stroke={theme.text} strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="30" y1="0" x2="30" y2="40" stroke={theme.text} strokeWidth="2.5" strokeLinecap="round" />
+        </svg>
+      )}
+      {category === 'Silk' && (
+        <div 
+          className="w-full h-full opacity-60" 
+          style={{ background: `linear-gradient(135deg, transparent 0%, ${theme.text} 50%, transparent 100%)` }} 
+        />
+      )}
+    </div>
+  )
+}
+
 export default function Catalog() {
   const theme = useTheme()
   const [activeCategory, setActiveCategory] = useState('All')
 
-  // Sample data structured around Cotton, Polyester, Woolen, and Silk with B2B technical specs
   const fabrics = [
     {
       id: 1,
@@ -127,18 +163,17 @@ export default function Catalog() {
           Fabric Catalog
         </h1>
 
-        {/* Animated Intertwining Threads Divider */}
         <KnittingThreadsDivider />
 
-        {/* <p 
+        <p 
           style={{ color: theme.text }}
           className="text-base sm:text-lg font-light opacity-75 max-w-2xl mx-auto leading-relaxed"
         >
           Explore our precision-engineered knits and raw material standards, optimized for global fashion houses, activewear brands, and technical industries.
-        </p> */}
+        </p>
       </div>
 
-      {/* Category Filter Pills with Hover Popup Animation */}
+      {/* Category Filter Pills */}
       <div className="max-w-7xl mx-auto w-full flex flex-wrap justify-center gap-3 mb-16">
         {['All', 'Cotton', 'Polyester', 'Woolen', 'Silk'].map((cat) => (
           <motion.button
@@ -160,7 +195,7 @@ export default function Catalog() {
         ))}
       </div>
 
-      {/* Fabric Grid with Hover Popup Effect */}
+      {/* Fabric Grid */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
         <AnimatePresence>
           {filteredFabrics.map((fabric) => (
@@ -180,23 +215,28 @@ export default function Catalog() {
             >
               <div>
                 <div className="flex justify-between items-start mb-4">
-                  <span 
-                    style={{ color: theme.text }}
-                    className="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-current opacity-60"
-                  >
-                    {fabric.code}
-                  </span>
-                  <span 
-                    style={{ color: theme.text }}
-                    className="text-xs font-bold tracking-wider opacity-80"
-                  >
-                    {fabric.gsm}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <FabricSwatch category={fabric.category} code={fabric.code} />
+                    <div>
+                      <span 
+                        style={{ color: theme.text }}
+                        className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border border-current opacity-60 block w-fit mb-1"
+                      >
+                        {fabric.code}
+                      </span>
+                      <span 
+                        style={{ color: theme.text }}
+                        className="text-xs font-bold tracking-wider opacity-80"
+                      >
+                        {fabric.gsm}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <h3 
                   style={{ color: theme.text }}
-                  className="text-xl font-serif font-bold mb-2 tracking-wide"
+                  className="text-xl font-serif font-bold mb-2 tracking-wide mt-4"
                 >
                   {fabric.name}
                 </h3>
@@ -229,6 +269,7 @@ export default function Catalog() {
 
               <Link
                 to="/concierge"
+                state={{ focusName: true }}
                 style={{ 
                   backgroundColor: theme.id === 'midnight' ? '#1A2B4C' : theme.id === 'terracotta' ? '#9C5237' : '#111111',
                   color: '#FFFFFF' 
