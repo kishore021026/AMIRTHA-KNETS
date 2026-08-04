@@ -3,6 +3,7 @@ import { ThemeProvider, THEMES } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
+import Catalog from './pages/Catalog'
 import Concierge from './pages/Concierge'
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
           <div className="flex-grow flex flex-col relative">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Catalog />} />
               <Route path="/concierge" element={<Concierge />} />
             </Routes>
           </div>

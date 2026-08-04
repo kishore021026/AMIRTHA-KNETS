@@ -1,9 +1,19 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 
 export default function Concierge() {
   const theme = useTheme()
+
+  // Ref to target the B2B form's Name input for auto-focusing
+  const nameInputRef = useRef(null)
+
+  // Automatically focus the B2B Name input when landing on the page
+  useEffect(() => {
+    if (nameInputRef.current) {
+      nameInputRef.current.focus()
+    }
+  }, [])
 
   // B2B Form State
   const [formData, setFormData] = useState({
@@ -267,6 +277,7 @@ export default function Concierge() {
                 <div>
                   <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Full Name *</label>
                   <input 
+                    ref={nameInputRef}
                     type="text" 
                     required
                     value={formData.name}
@@ -523,7 +534,6 @@ export default function Concierge() {
                   <label style={{ color: theme.text }} className="block text-xs font-bold uppercase tracking-widest opacity-70 mb-2">LinkedIn Profile URL </label>
                   <input 
                     type="url" 
-                    // required
                     value={careerData.linkedin}
                     onChange={(e) => setCareerData({...careerData, linkedin: e.target.value})}
                     placeholder="https://linkedin.com/in/username"
