@@ -68,19 +68,19 @@ const MANUFACTURING_STEPS = [
     step: '01',
     title: 'Raw Fiber Sourcing',
     description: 'We partner globally with ethical farms to harvest the finest organic cotton, raw silk, and high-grade modal fibers before they enter the mill.',
-    image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?q=80&w=1000&auto=format&fit=crop'
+    image: '/images/fabric-2.jpg'
   },
   {
     step: '02',
     title: 'Precision Spinning & Blending',
     description: 'Raw fibers are combed, cleaned, and spun into high-tensile yarns with exact micron counts optimized for durability and breathability.',
-    image: 'https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=1000&auto=format&fit=crop'
+    image: '/images/fabric-1.jpg'
   },
   {
     step: '03',
     title: 'Advanced Loom Weaving',
     description: 'Using state-of-the-art Italian and Japanese looms, our master technicians interlace warp and weft threads into custom jacquards and technical knits.',
-    image: 'https://images.unsplash.com/photo-1528458876861-544fd1761a91?q=80&w=1000&auto=format&fit=crop'
+    image: '/images/fabric-step3.jpg'
   },
   {
     step: '04',

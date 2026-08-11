@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider, THEMES } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import ExitPopup from './components/ExitPopup'
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
 import Concierge from './pages/Concierge'
@@ -21,7 +20,6 @@ export default function App() {
         >
           
           <Navbar />
-          <ExitPopup />
           
           <div className="flex-grow flex flex-col relative">
             <Routes>
