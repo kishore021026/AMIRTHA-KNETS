@@ -9,7 +9,7 @@ import ParticleThreads from '../components/ParticleThreads'
 const SHOWCASE_IMAGES = [
   { url: '/images/fabric-1.jpg', title: 'Raw Silk & Fine Linen' },
   { url: '/images/fabric-2.jpg', title: 'Woven Cashmere & Wool' },
-  // { url: '/images/fabric-3.jpg', title: 'Architectural Jacquard Textures' }
+  { url: '/images/fabric-3.jpg', title: 'Architectural Jacquard Textures' }
 ]
 
 // Top 3 Major Enterprise & Global Brands (Large Scale Cards)
