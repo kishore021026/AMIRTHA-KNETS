@@ -28,7 +28,7 @@ export default function Navbar() {
         style={{ color: '#FFFFFF' }}
         className="text-lg sm:text-xl md:text-2xl font-serif tracking-tight text-center"
       >
-        AMIRTHA KNETS 
+        AMIRTHA KNITS 
       </NavLink>
       
       {/* Pill / Capsule Navigation Container */}
