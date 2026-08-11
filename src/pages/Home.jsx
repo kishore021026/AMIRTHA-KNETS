@@ -12,24 +12,53 @@ const SHOWCASE_IMAGES = [
   { url: '/images/fabric-3.jpg', title: 'Architectural Jacquard Textures' }
 ]
 
+// Top 3 Major Enterprise & Global Brands (Large Scale Cards)
 const MAJOR_CLIENTS = [
   {
-    name: 'JOCKEY',
-    category: 'Intimates & Premium Apparel',
-    description: 'Supplying ultra-soft, durable cotton and modal blends for world-class comfort wear.',
-    bgImage: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1000&auto=format&fit=crop'
+    name: 'TECHNO SPORT',
+    category: 'Performance Activewear • Large Enterprise',
+    description: 'Engineered moisture-wicking and high-stretch functional knits powering a nationwide retail network.',
+    bgImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop'
   },
   {
     name: 'HYUNDAI',
-    category: 'Technical & Industrial Textiles',
-    description: 'Providing heavy-duty, high-tensile specialized technical fabrics for manufacturing standards.',
-    bgImage: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1000&auto=format&fit=crop'
+    category: 'Automotive & Uniforms • Global MNC',
+    description: 'Providing heavy-duty, high-tensile specialized technical fabrics for official corporate dealership standards.',
+    bgImage: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=1000&auto=format&fit=crop'
   },
   {
-    name: 'TECHNO SPORT',
-    category: 'Performance Activewear',
-    description: 'Engineered moisture-wicking and high-stretch functional knits for athletic excellence.',
-    bgImage: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop'
+    name: 'PRANERA (LAYA)',
+    category: 'Ladies Apparel & Fabrics • SME',
+    description: 'Tirupur-based manufacturer and wholesaler specializing in premium ladies wear and eco-friendly dry-fit fabrics.',
+    bgImage: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop'
+  }
+]
+
+// Remaining 4 Specialized Industry Partners (4-in-a-row Grid with Background Images)
+const SPECIALIZED_PARTNERS = [
+  {
+    name: 'PARUTHI KNIT WEARS',
+    category: 'Activewear & Sportswear',
+    description: 'Specialized textile and apparel manufacturing firm based in the Tirupur textile hub.',
+    bgImage: 'https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    name: 'ADITI CREATION',
+    category: 'Textile Manufacturing',
+    description: 'Private textile manufacturer and garment supplier operating in regional and export markets.',
+    bgImage: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    name: 'YESSOR TECH',
+    category: 'Cleanroom Garments',
+    description: 'Specialized lean manufacturer focusing on industrial cleanroom garments and specialized wipes.',
+    bgImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop'
+  },
+  {
+    name: 'KARUNYA KNIT WEARS',
+    category: 'Cotton & Corporate Workwear',
+    description: 'Regional manufacturer providing quality cotton, jersey fabrics, and corporate workwear.',
+    bgImage: 'https://images.unsplash.com/photo-1574634534894-89d7576c8259?q=80&w=1000&auto=format&fit=crop'
   }
 ]
 
@@ -56,7 +85,7 @@ const MANUFACTURING_STEPS = [
   {
     step: '04',
     title: 'Finishing & Quality Assurance',
-    description: 'Every batch undergoes rigorous tensile, colorfastness, and eco-finishing tests to meet the strict production demands of global leaders like Jockey and Honda.',
+    description: 'Every batch undergoes rigorous tensile, colorfastness, and eco-finishing tests to meet the strict production demands of global leaders like Technosport and Hyundai.',
     image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=1000&auto=format&fit=crop'
   }
 ]
@@ -186,7 +215,7 @@ export default function Home() {
 
       </div>
 
-      {/* MIDDLE SECTION: Leading Clients Showcase */}
+      {/* MIDDLE SECTION: Leading Clients Showcase (7 Clients: Top 3 Large Cards + Bottom 4 Grid with Images) */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -200,18 +229,18 @@ export default function Home() {
             style={{ color: theme.text }}
             className="text-xs font-bold tracking-[0.25em] uppercase opacity-60 mb-2"
           >
-            Trusted Manufacturing Partner
+            Trusted Manufacturing Partners
           </p>
           <h2 
             style={{ color: theme.text }}
             className="text-2xl sm:text-4xl font-serif tracking-tight"
           >
-            Powering Global Industry Leaders
+            Powering Global Industry Leaders & Specialized Enterprises
           </h2>
         </div>
 
-        {/* Responsive Client Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* Tier 1: Top 3 Major Enterprise Cards (3 in a row, large scale) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
           {MAJOR_CLIENTS.map((client, index) => (
             <div 
               key={index}
@@ -236,6 +265,39 @@ export default function Home() {
 
                 <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-white/20 flex items-center justify-between text-[10px] sm:text-[11px] font-bold tracking-widest uppercase opacity-80">
                   <span>Verified Supply Partner</span>
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Tier 2: Remaining 4 Specialized Partners (4 in a row grid with Background Images) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {SPECIALIZED_PARTNERS.map((partner, index) => (
+            <div 
+              key={index}
+              className="relative group h-[300px] rounded-2xl overflow-hidden shadow-xl border border-white/10 flex flex-col justify-end p-6 transition-transform duration-500 hover:-translate-y-2"
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                style={{ backgroundImage: `url(${partner.bgImage})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+
+              <div className="relative z-10 text-white">
+                <span className="text-[9px] tracking-widest uppercase opacity-75 font-semibold block mb-1">
+                  {partner.category}
+                </span>
+                <h3 className="text-lg font-serif tracking-wide mb-2 font-bold">
+                  {partner.name}
+                </h3>
+                <p className="text-xs font-light leading-relaxed opacity-85">
+                  {partner.description}
+                </p>
+
+                <div className="mt-4 pt-3 border-t border-white/20 flex items-center justify-between text-[10px] font-bold tracking-widest uppercase opacity-80">
+                  <span>Verified Partner</span>
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </div>
               </div>
