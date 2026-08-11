@@ -74,7 +74,7 @@ const MANUFACTURING_STEPS = [
     step: '02',
     title: 'Precision Spinning & Blending',
     description: 'Raw fibers are combed, cleaned, and spun into high-tensile yarns with exact micron counts optimized for durability and breathability.',
-    image: '/images/fabric-1.jpg'
+    image: '/images/fabric-step2.jpg'
   },
   {
     step: '03',
@@ -86,7 +86,7 @@ const MANUFACTURING_STEPS = [
     step: '04',
     title: 'Finishing & Quality Assurance',
     description: 'Every batch undergoes rigorous tensile, colorfastness, and eco-finishing tests to meet the strict production demands of global leaders like Technosport and Hyundai.',
-    image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=1000&auto=format&fit=crop'
+    image: '/images/fabric-step4.jpg'
   }
 ]
 
