@@ -98,7 +98,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % SHOWCASE_IMAGES.length)
-    }, 3500)
+    }, 2500)
     return () => clearInterval(timer)
   }, [])
 
