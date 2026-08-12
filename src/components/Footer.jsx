@@ -83,9 +83,9 @@ export default function Footer() {
         <div>
           <h3 className="text-xs font-bold tracking-widest uppercase opacity-70 mb-5">Major Supply</h3>
           <ul className="space-y-3 text-xs md:text-sm font-light opacity-80">
-            <li>Jockey (Intimate Apparel)</li>
-            <li>Honda (Technical Textiles)</li>
             <li>Techno Sport (Activewear)</li>
+            <li>Hyundai (Technical Textiles)</li>
+            <li>Pranera (Intimate Apparel)</li>
           </ul>
         </div>
 
@@ -97,7 +97,7 @@ export default function Footer() {
             India
           </p>
           <p className="text-xs md:text-sm font-light opacity-80">
-            <span className="font-semibold opacity-100">Email:</span> support@amirthaknets.com
+            <span className="font-semibold opacity-100">Email:</span> amirthakintofficials@gmail.com
           </p>
         </div>
 

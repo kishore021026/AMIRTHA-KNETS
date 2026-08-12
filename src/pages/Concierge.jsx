@@ -184,8 +184,8 @@ export default function Concierge() {
 
               <div>
                 <span className="font-semibold block uppercase text-xs tracking-wider opacity-60 mb-1">Direct Contact</span>
-                <p>Phone: +91 422 298XXXX / +91 98422 XXXXX</p>
-                <p>Email: support@amirthaknets.com</p>
+                <p>Phone: +91 9940227211</p>
+                <p>Email: amirthakintofficials@gmail.com</p>
               </div>
 
               <div>
