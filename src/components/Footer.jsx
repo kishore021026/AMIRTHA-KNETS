@@ -105,7 +105,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/20 flex flex-col sm:flex-row justify-between items-center text-xs opacity-60 font-light gap-4">
-        <p>© {new Date().getFullYear()} Amirtha Knets. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Amirtha Knits. All rights reserved.</p>
         <p>Crafted for Excellence & Precision.</p>
       </div>
     </footer>
