@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="flex flex-col justify-between">
           <div>
             <h2 className="text-xl md:text-2xl font-serif tracking-tight mb-4">
-              AMIRTHA KNETS
+              AMIRTHA KNITS
             </h2>
             <p className="text-xs md:text-sm font-light opacity-80 leading-relaxed mb-6">
               Global suppliers of honest raw materials and impeccable weaves for world-class fashion houses, automotive leaders, and architectural innovators.
