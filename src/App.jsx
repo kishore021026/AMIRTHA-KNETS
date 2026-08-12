@@ -8,7 +8,7 @@ import Concierge from './pages/Concierge'
 
 export default function App() {
   
-  // 🎨 CHANGE YOUR GLOBAL THEME HERE: 'onyx', 'terracotta', or 'midnight'
+  // 🎨 CHANGE YOUR GLOBAL THEME HERE: 'terracotta', 'onyx', 'midnight', 'olive', 'ruby', 'azure'
   const activeTheme = THEMES['terracotta']
 
   return (

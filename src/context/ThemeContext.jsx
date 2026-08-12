@@ -26,7 +26,36 @@ export const THEMES = {
     accent: '#B8860B',
     border: '#E2DFD5',
     button: '#1A2B4C',
-    meshColor: '#1A2B4C'
+    meshColor: '#809fdd'
+  },
+  olive: {
+    id: 'olive',
+    bg: '#F4F5F0',
+    text: '#2B331F',
+    accent: '#5E7144',
+    border: '#E1E4D7',
+    button: '#2B331F',
+    meshColor: '#2B331F'
+  },
+  // NEW: Bold, energetic, and highly vibrant red/pink
+  ruby: {
+    id: 'ruby',
+    bg: '#FFF5F7',
+    text: '#4C0519',
+    accent: '#E11D48',
+    border: '#FFE4E6',
+    button: '#E11D48',
+    meshColor: '#E11D48'
+  },
+  // NEW: Electric, modern, tech-forward blue
+  azure: {
+    id: 'azure',
+    bg: '#F0F5FF',
+    text: '#082F49',
+    accent: '#0284C7',
+    border: '#E0F2FE',
+    button: '#0284C7',
+    meshColor: '#0284C7'
   }
 }
 
